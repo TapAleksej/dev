@@ -1,0 +1,8 @@
+---
+# tasks file for install-postgress
+- include_tasks: prepare.yml
+
+- include_tasks: install_redhat.yml
+  when: ansible_os_family == 'RedHat'
+
+- include_tasks: install_debian.yml

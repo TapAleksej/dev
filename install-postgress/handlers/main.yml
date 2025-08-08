@@ -1,0 +1,6 @@
+---
+# handlers file for install-postgress
+- name: restart postgres
+  systemd:
+    name: postgresql
+    state: restarted

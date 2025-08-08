@@ -1,0 +1,6 @@
+---
+# vars file for install-postgress
+postgres_version: 16
+postgres_user: appuser
+postgres_password: secret
+db_name: surf_shop

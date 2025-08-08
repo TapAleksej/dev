@@ -1,0 +1,23 @@
+---
+- name: Import postgres repo key
+  rpm_key:
+    state: present
+    key: https://download.postgresql.org/pub/repos/yum/keys/PGDG-RPM-GPG-KEY-RHEL
+
+- name: Add postgres repo
+  package:
+    name: "https://download.postgresql.org/pub/repos/yum/reporpms/EL-{ ansible_distribution_major_version }-x86_64/pgdg-redhat-latest.noarch.rpm"
+    state: present
+
+- name: Install postgres
+  dnf:
+    name:
+      - "@postgresql:{{ postgres_version }}"
+    state: present
+    update_cache: yes
+
+- name:  Create claster
+  command:
+    cmd: "postgresql-setup --initdb"
+  # вызывает handler
+  notify: restart postgres
